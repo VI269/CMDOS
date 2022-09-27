@@ -86,15 +86,15 @@ class Utilities:
             try:
                 try:
                     if read:
-                        with open(f"{path}/OSData/{name}.txt", "r") as f:
+                        with open(f"{path}/OSData/Notes/{name}.txt", "r") as f:
                             return f.read()
                     else:
-                        with open(f'{path}/OSData/{name}.txt', mode) as f:
+                        with open(f'{path}/OSData/Notes/{name}.txt', mode) as f:
                             f.write(info)
                             return "Changed"
                 except:
                     try:
-                        with open(f'{path}/OSData/{name}.txt', mode) as f:
+                        with open(f'{path}/OSData/Notes/{name}.txt', mode) as f:
                             continue
                     except:
                         return "Unable To Create File"
@@ -103,8 +103,8 @@ class Utilities:
                     
     def noteClear(self)->str:
         try:
-            for f in os.listdir(f"{path}/OSData"):
-                os.remove(os.path.join(f"{path}/OSData", f))
+            for f in os.listdir(f"{path}/OSData/Notes"):
+                os.remove(os.path.join(f"{path}/OSData/Notes", f))
         except:
             return "Something went wrong"
 
