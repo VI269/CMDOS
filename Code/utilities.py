@@ -1,7 +1,6 @@
 import math 
 import os
 import pathlib
-import glob
 
 path = pathlib.Path(__file__).parent.resolve()
 
@@ -81,7 +80,7 @@ class Utilities:
         except:
             return "Something went wrong"
 
-    def notes(self, name=None, info='', append=True, read=True):
+    def notes(self, name=None, info='', append=True, read=True)->str:
         mode = 'a' if append else 'w'
         while True:
             try:
@@ -102,7 +101,7 @@ class Utilities:
             except:
                 return "Something went wrong"
                     
-    def noteClear(self):
+    def noteClear(self)->str:
         try:
             for f in os.listdir(f"{path}/OSData"):
                 os.remove(os.path.join(f"{path}/OSData", f))
