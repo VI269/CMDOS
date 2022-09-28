@@ -10,7 +10,7 @@ class Games:
     def setupText(self)->str:
         return "OS: %s" % self.osname + "Username: %s" % self.username
     
-    def rngNum()->None:
+    def rngNum():
         try:
             run = True
             while run:

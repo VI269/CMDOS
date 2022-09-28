@@ -2,14 +2,17 @@ import math
 import os
 import pathlib
 
-path = pathlib.Path(__file__).parent.resolve()
-
 class Utilities:
     def __init__(self, os, user):
         self.os = os
         self.username = user
-        import math
     
+    def get_path(self):
+        try:
+            return pathlib.Path(__file__).parent.resolve()
+        except:
+            return "Something went wrong"
+
     def calculator(self, n1=0, n2=0, op='+'):
         try:
             if op == '+':
@@ -86,15 +89,15 @@ class Utilities:
             try:
                 try:
                     if read:
-                        with open(f"{path}/OSData/Notes/{name}.txt", "r") as f:
+                        with open(f"{self.get_path}/OSData/Notes/{name}.txt", "r") as f:
                             return f.read()
                     else:
-                        with open(f'{path}/OSData/Notes/{name}.txt', mode) as f:
+                        with open(f'{self.get_path}/OSData/Notes/{name}.txt', mode) as f:
                             f.write(info)
                             return "Changed"
                 except:
                     try:
-                        with open(f'{path}/OSData/Notes/{name}.txt', mode) as f:
+                        with open(f'{self.get_path}/OSData/Notes/{name}.txt', mode) as f:
                             continue
                     except:
                         return "Unable To Create File"
@@ -103,8 +106,8 @@ class Utilities:
                     
     def noteClear(self)->str:
         try:
-            for f in os.listdir(f"{path}/OSData/Notes"):
-                os.remove(os.path.join(f"{path}/OSData/Notes", f))
+            for f in os.listdir(f"{self.get_path}/OSData/Notes"):
+                os.remove(os.path.join(f"{self.get_path}/OSData/Notes", f))
         except:
             return "Something went wrong"
 
