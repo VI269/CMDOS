@@ -1,4 +1,5 @@
 import os
+# For the appmaker, run
 class App:
     name = ''
     path = ''
