@@ -15,7 +15,7 @@ def refresh():
         setup = f.read()
     with open(f'{util.get_path()}/data.txt', 'r') as f:
         username = f.read()
-    if name == 'anonymous': 
+    if username == 'anonymous': 
         with open(f'{util.get_path()}/setup.txt', 'w') as f:
             f.write(False)
 
