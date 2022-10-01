@@ -6,7 +6,7 @@ from utilities import Utilities
 setup = False
 util = Utilities()
 
-username = ''
+username = open(f'{util.get_path()}/setup.txt', 'r').read()
 
 def refresh():
     global setup
@@ -22,6 +22,8 @@ def refresh():
 def clearConsole():
     os.system("clear")
 
+setup_req_commands = ["notes", 'games', 'encryptor']
+
 clearConsole()
 refresh()
 
@@ -36,6 +38,8 @@ while True:
         
         elif cmd == 'setup': 
             name = input('Name {anonymous} ~ $ ')
+            if name.rstrip() == '': 
+                name == 'anonymous'
             newname = ''
             for letter in name:
                 if letter == ' ': 
@@ -47,7 +51,32 @@ while True:
             with open(f"{util.get_path()}/setup.txt", 'w') as f:
                 f.write(True)
         
-        if setup:
-            pass
+        if cmd in setup_req_commands:
+            if setup:
+                if cmd == 'notes': 
+                    _name = input("Enter note name ? ").lower().replace(' ', '-')
+                    try:
+                        clear = bool(input('Clear the note ? '))
+                    except:
+                        print('Enter a boolean value(True or False)')
+                        continue
+                    try:
+                        _read = bool(input('Read note ? '))
+                    except:
+                        print('Enter a boolean value(True or False)')
+                        continue
+                    if not _read:
+                        try:
+                            _append = bool(input('Append or write to the note ? '))
+                        except:
+                            print('Enter a boolean value(True or False)')
+                            continue
+                        data = input("Data to enter in the note ? ")
+                        print(util.notes(name=_name, info=data, append=_append, read=True))
+                    else:
+                        data = input("Data to enter in the note ? ")
+                        print(util.notes(name=_name, info=data, append=_append, read=False))   
+            else:
+                print("Please setup user first.")
     except:
         print("Something went wrong")
